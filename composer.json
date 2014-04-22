@@ -1,0 +1,18 @@
+{
+  "name": "dotcake/dotcake",
+  "description": "Reference implementation of `.cake`",
+  "type": "cakephp-plugin",
+  "keywords": ["cakephp", "editor"],
+  "homepage": "https://github.com/dotcake/dotcake",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ken'ichiro Oyama",
+      "homepage": "https://github.com/k1LoW",
+      "role": "Author"
+    }
+  ],
+  "require": {
+    "composer/installers": "*"
+  }
+}
