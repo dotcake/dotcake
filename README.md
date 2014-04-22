@@ -16,4 +16,4 @@ This plugin is
 
 ## Generate .cake.
 
-   $ cake Dotcake.dotcake
+    $ cake Dotcake.dotcake
