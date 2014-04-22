@@ -1,5 +1,7 @@
 # Dotcake plugin
 
+[![Build Status](https://travis-ci.org/dotcake/dotcake.svg?branch=master)](https://travis-ci.org/dotcake/dotcake)
+
 ## About .cake
 
 `.cake` provide CakePHP project info for editor's cakephp plugins.
