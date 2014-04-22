@@ -10,10 +10,10 @@
 
 This plugin is
 
-- Reference implementation of `.cake`
-- Plugin for discussion about `.cake` format
-- `.cake` generator
+- Reference implementation of `.cake`.
+- Plugin for discussion about `.cake` format.
+- `.cake` generator.
 
-## Generate .cake.
+## Generate .cake
 
     $ cake Dotcake.dotcake
