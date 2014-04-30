@@ -5,9 +5,9 @@ class Dotcake {
 
   private $base;
   private $cake;
-  private $pathes;
+  private $paths;
 
-  public function __construct($base = null, $pathes = array(), $cake = null){
+  public function __construct($base = null, $paths = array(), $cake = null){
     if (empty($base)) {
       $base = APP;
     }
