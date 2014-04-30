@@ -6,9 +6,10 @@ php:
 
 env:
   - DB=mysql CAKEPHP=2.3.10
-  - DB=mysql CAKEPHP=2.4.7
+  - DB=mysql CAKEPHP=2.4.9
 
 before_script:
+  - composer install --dev
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
   - wget https://github.com/cakephp/cakephp/tarball/$CAKEPHP -O cake.tar.gz
   - tar xf cake.tar.gz
@@ -19,6 +20,7 @@ before_script:
     'Plugin' => array('/home/travis/build/dotcake/'),
     ));
     CakePlugin::loadAll();
+    ini_set('include_path',  '/home/travis/build/dotcake/dotcake/vendor/phpunit/phpunit' . PATH_SEPARATOR . ini_get('include_path'));
     " > cakephp/app/Config/bootstrap.php
   - echo "<?php
     class DATABASE_CONFIG {
