@@ -48,6 +48,10 @@ class Dotcake {
     $base = rtrim($base, '\/') . '/';
     $target = rtrim($target, '\/') . '/';
 
+    if (substr($target, 0, 1) !== '/') {
+      return $target;
+    }
+
     $base = explode('/', $base);
     $target = explode('/', $target);
     $relativePath = $target;

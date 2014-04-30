@@ -8,6 +8,7 @@ class DotcakeTestCase extends CakeTestCase {
    *
    */
   public function setUp(){
+    App::build(array(), App::REGISTER);
   }
 
   /**
@@ -16,6 +17,7 @@ class DotcakeTestCase extends CakeTestCase {
    */
   public function tearDown(){
     unset($this->Dotcake);
+    App::build(array(), App::REGISTER);
   }
 
   /**
@@ -48,5 +50,40 @@ class DotcakeTestCase extends CakeTestCase {
     $this->assertTrue(in_array('./Locale/', $result['build_path']['locales']));
     $this->assertTrue(in_array('./Vendor/', $result['build_path']['vendors']));
     $this->assertTrue(in_array('./Plugin/', $result['build_path']['plugins']));
+  }
+
+  /**
+   * test_RelativePath
+   * jpn: '/'からはじまらないパスはそのまま相対パスとして処理する
+   *
+   * @param
+   */
+  public function test_RelativePath(){
+    App::build(array(
+      'Plugin' => array('path/to/plugins/')
+    ));
+    $this->Dotcake = new Dotcake();
+    $result = $this->Dotcake->generate();
+    $this->assertTrue(in_array('path/to/plugins/', $result['build_path']['plugins']));
+  }
+
+  /**
+   * test_PathPriority
+   * jpn: App::build()で後から追加されたパスが優先される
+   *
+   */
+  public function test_PathPriority(){
+    App::build(array(
+      'Plugin' => array('first/path/to/plugins/', 'second/path/to/plugins/')
+    ));
+    App::build(array(
+      'Plugin' => array('third/path/to/plugins/')
+    ));
+    $this->Dotcake = new Dotcake();
+    $result = $this->Dotcake->generate();
+    $this->assertEqual($result['build_path']['plugins'][0], 'third/path/to/plugins/');
+    $this->assertEqual($result['build_path']['plugins'][1], 'first/path/to/plugins/');
+    $this->assertEqual($result['build_path']['plugins'][2], 'second/path/to/plugins/');
+    $this->assertEqual($result['build_path']['plugins'][3], './Plugin/');
   }
 }
