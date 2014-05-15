@@ -4,7 +4,7 @@ App::uses('Infrector', 'Utility');
 /**
  * Dotcake class
  *
- * @copyright     Copyright (c) dorcake organization. (http://github.com/dotcake)
+ * @copyright     Copyright (c) dotcake organization. (https://github.com/dotcake)
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 class Dotcake {

@@ -5,7 +5,7 @@ App::uses('Dotcake', 'Dotcake.Lib');
 /**
  * DotcakeShell class
  *
- * @copyright     Copyright (c) dorcake organization. (http://github.com/dotcake)
+ * @copyright     Copyright (c) dotcake organization. (https://github.com/dotcake)
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 class DotcakeShell extends Shell {
