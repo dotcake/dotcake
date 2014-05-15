@@ -1,22 +1,36 @@
 <?php
 App::uses('Infrector', 'Utility');
 
+/**
+ * Dotcake class
+ *
+ * @copyright     Copyright (c) dorcake organization. (http://github.com/dotcake)
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
 class Dotcake {
 
 	private $base;
 	private $cake;
 	private $paths;
 
-	public function __construct($base = null, $paths = array(), $cake = null){
-		if (empty($base)) {
+	/**
+	 * __construct
+	 *
+	 * @param string $base
+	 * @param array $paths
+	 * @param string $cake
+	 * @return
+	 */
+	public function __construct($base = null, array $paths = array(), $cake = null){
+		if ($base === null) {
 			$base = APP;
 		}
 		$this->base = $base;
-		if (empty($paths)) {
+		if ($paths === array()) {
 			$paths = App::paths();
 		}
 		$this->paths = $paths;
-		if (empty($cake)) {
+		if ($cake === null) {
 			$cake = CAKE_CORE_INCLUDE_PATH;
 		}
 		$this->cake = $this->relativePath($cake);
@@ -24,7 +38,9 @@ class Dotcake {
 
 	/**
 	 * generate
+	 * Generate .cake array
 	 *
+	 * @return array $dotcake
 	 */
 	public function generate(){
 		$dotcake = array();
@@ -41,7 +57,10 @@ class Dotcake {
 
 	/**
 	 * relativePath
+	 * build relative filepath
 	 *
+	 * @param string $target
+	 * @return string $relativePathString
 	 */
 	public function relativePath($target) {
 		$base = $this->base;
@@ -57,7 +76,7 @@ class Dotcake {
 		$relativePath = $target;
 
 		foreach($base as $depth => $dir) {
-			if($dir === $target[$depth]) {
+			if($target[$depth] === $dir) {
 				array_shift($relativePath);
 			} else {
 				$remaining = count($base) - $depth;

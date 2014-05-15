@@ -2,6 +2,12 @@
 App::uses('Shell', 'Console');
 App::uses('Dotcake', 'Dotcake.Lib');
 
+/**
+ * DotcakeShell class
+ *
+ * @copyright     Copyright (c) dorcake organization. (http://github.com/dotcake)
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
 class DotcakeShell extends Shell {
 
 	public $tasks = array();
@@ -42,7 +48,6 @@ class DotcakeShell extends Shell {
 	/**
 	 * generate
 	 *
-	 * @param
 	 */
 	public function generate(){
 		$this->out('Generate .cake ...');

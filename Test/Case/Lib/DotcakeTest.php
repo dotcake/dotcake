@@ -1,6 +1,12 @@
 <?php
 App::uses('Dotcake', 'Dotcake.Lib');
 
+/**
+ * DotcakeTestCase file
+ *
+ * @copyright     Copyright (c) dorcake organization. (http://github.com/dotcake)
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
 class DotcakeTestCase extends CakeTestCase {
 
 	/**
