@@ -12,18 +12,18 @@ class DotcakeShell extends Shell {
 
 	public $tasks = array();
 
-	/**
-	 * startup
-	 *
-	 */
-	public function startup(){
+/**
+ * startup
+ *
+ */
+	public function startup() {
 		parent::startup();
 	}
 
-	/**
-	 * main
-	 *
-	 */
+/**
+ * main
+ *
+ */
 	public function main() {
 		$this->out(__d('cake_console', 'CakePHP .cake Generator'));
 		$this->hr();
@@ -32,37 +32,36 @@ class DotcakeShell extends Shell {
 
 		$choice = strtoupper($this->in(__d('cake_console', 'What would you like to do?'), array('G', 'Q')));
 		switch ($choice) {
-		case 'G':
-			$this->generate();
-			break;
-		case 'Q':
-			exit(0);
-			break;
-		default:
-			$this->out(__d('cake_console', 'You have made an invalid selection. Please choose a command to execute by entering M or Q.'));
+			case 'G':
+				$this->generate();
+				break;
+			case 'Q':
+				exit(0);
+			default:
+				$this->out(__d('cake_console', 'You have made an invalid selection. Please choose a command to execute by entering M or Q.'));
 		}
 		$this->hr();
 		$this->main();
 	}
 
-	/**
-	 * generate
-	 *
-	 */
-	public function generate(){
+/**
+ * generate
+ *
+ */
+	public function generate() {
 		$this->out('Generate .cake ...');
 		$d = new Dotcake(APP, App::paths(), CAKE_CORE_INCLUDE_PATH);
 		$this->createFile(APP . '.cake', json_encode($d->generate()));
 	}
 
-	/**
-	 * help
-	 *
-	 */
+/**
+ * help
+ *
+ */
 	public function help() {
 		$this->out(__d('cake_console', 'CakePHP .cake Generator'));
 		$this->hr();
-		$this->out(__d('cake_console',"Usage: cake Dotcake.dotcake generate"));
+		$this->out(__d('cake_console', "Usage: cake Dotcake.dotcake generate"));
 		$this->hr();
 		$this->out("");
 	}

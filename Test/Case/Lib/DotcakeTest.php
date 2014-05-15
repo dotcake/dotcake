@@ -9,28 +9,28 @@ App::uses('Dotcake', 'Dotcake.Lib');
  */
 class DotcakeTestCase extends CakeTestCase {
 
-	/**
-	 * setUp
-	 *
-	 */
-	public function setUp(){
+/**
+ * setUp
+ *
+ */
+	public function setUp() {
 		App::build(array(), App::REGISTER);
 	}
 
-	/**
-	 * tearDown
-	 *
-	 */
-	public function tearDown(){
+/**
+ * tearDown
+ *
+ */
+	public function tearDown() {
 		unset($this->Dotcake);
 		App::build(array(), App::REGISTER);
 	}
 
-	/**
-	 * test_simpleGenerate
-	 *
-	 */
-	public function test_simpleGenerate(){
+/**
+ * test_simpleGenerate
+ *
+ */
+	public function testSimpleGenerate() {
 		$this->Dotcake = new Dotcake();
 		$result = $this->Dotcake->generate();
 		$this->assertTrue(array_key_exists('cake', $result));
@@ -58,13 +58,13 @@ class DotcakeTestCase extends CakeTestCase {
 		$this->assertTrue(in_array('./Plugin/', $result['build_path']['plugins']));
 	}
 
-	/**
-	 * test_RelativePath
-	 * jpn: '/'からはじまらないパスはそのまま相対パスとして処理する
-	 *
-	 * @param
-	 */
-	public function test_RelativePath(){
+/**
+ * test_RelativePath
+ * jpn: '/'からはじまらないパスはそのまま相対パスとして処理する
+ *
+ * @param
+ */
+	public function testRelativePath() {
 		App::build(array(
 			'Plugin' => array('path/to/plugins/')
 		));
@@ -73,12 +73,12 @@ class DotcakeTestCase extends CakeTestCase {
 		$this->assertTrue(in_array('path/to/plugins/', $result['build_path']['plugins']));
 	}
 
-	/**
-	 * test_PathPriority
-	 * jpn: App::build()で後から追加されたパスが優先される
-	 *
-	 */
-	public function test_PathPriority(){
+/**
+ * test_PathPriority
+ * jpn: App::build()で後から追加されたパスが優先される
+ *
+ */
+	public function testPathPriority() {
 		App::build(array(
 			'Plugin' => array('first/path/to/plugins/', 'second/path/to/plugins/')
 		));
