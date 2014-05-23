@@ -17,3 +17,7 @@ This plugin is
 ## Generate .cake
 
 $ cake Dotcake.dotcake generate
+
+### Options
+
+- `--format` [tab|ws|whitespace]: Return formatted json with tab or whitespace (4 spaces). 
