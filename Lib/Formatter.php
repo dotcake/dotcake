@@ -19,7 +19,9 @@ class Formatter {
 	}
 
 /**
- * Reformat
+ * Reformat return value of json_encode().
+ * Note: If a text contains whitespace, tab, e.t.c.,
+ * this method will return broken format.
  *
  * @param string $text
  */
