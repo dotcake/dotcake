@@ -1,6 +1,7 @@
 <?php
 App::uses('Shell', 'Console');
 App::uses('Dotcake', 'Dotcake.Lib');
+App::uses('Formatter', 'Dotcake.Lib');
 
 /**
  * DotcakeShell class
@@ -51,7 +52,38 @@ class DotcakeShell extends Shell {
 	public function generate() {
 		$this->out('Generate .cake ...');
 		$d = new Dotcake(APP, App::paths(), CAKE_CORE_INCLUDE_PATH);
-		$this->createFile(APP . '.cake', json_encode($d->generate()));
+		$contents = json_encode($d->generate());
+		if (array_key_exists('format', $this->params)) {
+			$format = $this->params['format'];
+			switch ($format) {
+				case 'tab':
+					$formatter = new Formatter();
+					$contents = $formatter->reformat($contents);
+					break;
+				case 'ws': // no break
+				case 'whitespace':
+					// can use JSON_PRETTY_PRINT option since PHP5.4
+					$formatter = new Formatter('    '); // 4 spaces
+					$contents = $formatter->reformat($contents);
+					break;
+				default:
+					$this->out(__d('cake_console', "'{$format}' is invalid format option. You can use 'tab', 'ws' or 'whitespace' as option value."));
+					exit(0);
+			}
+		}
+		$this->createFile(APP . '.cake', $contents);
+	}
+
+/**
+ * getOptionParser
+ *
+ */
+	public function getOptionParser() {
+		$parser = parent::getOptionParser();
+		$parser->addOption('format', array(
+			'help' => __d('cake_console', "Generate formatted json with tab or whitespace:'tab', 'ws' or 'whitespace'"),
+		));
+		return $parser;
 	}
 
 /**
