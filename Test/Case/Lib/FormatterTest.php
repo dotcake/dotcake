@@ -32,11 +32,12 @@ class FormatterTestCase extends CakeTestCase {
 	public function testReformat() {
 		$this->Formatter = new Formatter();
 		$text = <<< EOD
-{"cake":"..\/lib\/","build_path":{"models":[".\/Model\/"],"behaviors":[".\/Model\/Behavior\/",".\/MyModel\/Behavior\/"]}}
+{"cake_version":"2.5.5","cake":"..\/lib\/","build_path":{"models":[".\/Model\/"],"behaviors":[".\/Model\/Behavior\/",".\/MyModel\/Behavior\/"]}}
 EOD;
 		$result = $this->Formatter->reformat($text);
 		$expected = <<< EOD
 {
+	"cake_version":"2.5.5",
 	"cake":"..\/lib\/",
 	"build_path":{
 		"models":[
@@ -59,11 +60,12 @@ EOD;
 	public function testReformatWithWhitespace() {
 		$this->Formatter = new Formatter("    ");
 		$text = <<< EOD
-{"cake":"..\/lib\/","build_path":{"models":[".\/Model\/"],"behaviors":[".\/Model\/Behavior\/",".\/MyModel\/Behavior\/"]}}
+{"cake_version":"2.5.5","cake":"..\/lib\/","build_path":{"models":[".\/Model\/"],"behaviors":[".\/Model\/Behavior\/",".\/MyModel\/Behavior\/"]}}
 EOD;
 		$result = $this->Formatter->reformat($text);
 		$expected = <<< EOD
 {
+    "cake_version":"2.5.5",
     "cake":"..\/lib\/",
     "build_path":{
         "models":[
