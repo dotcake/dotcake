@@ -27,7 +27,7 @@ class DotcakeTestCase extends CakeTestCase {
 	}
 
 /**
- * test_simpleGenerate
+ * testSimpleGenerate
  *
  */
 	public function testSimpleGenerate() {
@@ -35,6 +35,7 @@ class DotcakeTestCase extends CakeTestCase {
 		$result = $this->Dotcake->generate();
 		$this->assertTrue(array_key_exists('cake', $result));
 		$this->assertTrue(array_key_exists('build_path', $result));
+		$this->assertTrue(array_key_exists('cake_version', $result));
 		$this->assertEqual(realpath(APP . $result['cake']), realpath(CAKE_CORE_INCLUDE_PATH));
 		$this->assertEqual(count($result['build_path']), 18);
 
@@ -59,10 +60,9 @@ class DotcakeTestCase extends CakeTestCase {
 	}
 
 /**
- * test_RelativePath
+ * testRelativePath
  * jpn: '/'からはじまらないパスはそのまま相対パスとして処理する
  *
- * @param
  */
 	public function testRelativePath() {
 		App::build(array(
@@ -74,7 +74,7 @@ class DotcakeTestCase extends CakeTestCase {
 	}
 
 /**
- * test_PathPriority
+ * testPathPriority
  * jpn: App::build()で後から追加されたパスが優先される
  *
  */
@@ -91,5 +91,16 @@ class DotcakeTestCase extends CakeTestCase {
 		$this->assertEqual($result['build_path']['plugins'][1], 'first/path/to/plugins/');
 		$this->assertEqual($result['build_path']['plugins'][2], 'second/path/to/plugins/');
 		$this->assertEqual($result['build_path']['plugins'][3], './Plugin/');
+	}
+
+/**
+ * testCakeVersion
+ * jpn: cake_versionが.cakeに設定される
+ *
+ */
+	public function testCakeVersion(){
+		$this->Dotcake = new Dotcake();
+		$result = $this->Dotcake->generate();
+		$this->assertEqual($result['cake_version'], Configure::version());
 	}
 }

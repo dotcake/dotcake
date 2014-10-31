@@ -46,6 +46,7 @@ class Dotcake {
  */
 	public function generate() {
 		$dotcake = array();
+		$dotcake['cake_version'] = Configure::version();
 		$dotcake['cake'] = $this->__cake;
 		$dotcake['build_path'] = array();
 		$paths = $this->__paths;
